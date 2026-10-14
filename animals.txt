@@ -1,0 +1,20 @@
+WR-0001 | Thabo | African Penguin | 4 | 85 | Release-Ready | Pre-Release Camp
+WR-0002 | Naledi | Serval | 3 | 62 | Recovering | Outdoor Enclosure
+WR-0003 | Zola | Cape Vulture | 12 | 19 | Critical | Intensive Care Unit
+WR-0004 | Jabu | Honey Badger | 2 | 5 | Critical | Intensive Care Unit
+WR-0005 | Kito | Pangolin | 5 | 0 | Critical | Intensive Care Unit
+WR-0006 | Bheki | Caracal | 1 | 39 | Serious | High-Dependency Ward
+WR-0007 | Lindi | Blue Crane | 7 | 20 | Serious | High-Dependency Ward
+WR-0008 | Mpho | Cheetah | 6 | 30 | Serious | High-Dependency Ward
+WR-0009 | Sipho | Aardvark | 4 | 50 | Stable | Recovery Ward
+WR-0010 | Themba | African Wild Dog | 8 | 40 | Stable | Recovery Ward
+WR-0011 | Dumi | Leopard | 10 | 59 | Stable | Recovery Ward
+WR-0012 | Lerato | Meerkat | 2 | 45 | Stable | Recovery Ward
+WR-0013 | Amira | Ostrich | 15 | 60 | Recovering | Outdoor Enclosure
+WR-0014 | Kofi | Spotted Hyena | 5 | 79 | Recovering | Outdoor Enclosure
+WR-0015 | Zuri | Lion | 12 | 70 | Recovering | Outdoor Enclosure
+WR-0016 | Thando | Springbok | 3 | 65 | Recovering | Outdoor Enclosure
+WR-0017 | Palesa | Black Rhino | 20 | 80 | Release-Ready | Pre-Release Camp
+WR-0018 | Sibusiso | African Elephant | 25 | 100 | Release-Ready | Pre-Release Camp
+WR-0019 | Ndlovu | Hippopotamus | 18 | 95 | Release-Ready | Pre-Release Camp
+WR-0020 | Gugu | Warthog | 4 | 15 | Critical | Intensive Care Unit
