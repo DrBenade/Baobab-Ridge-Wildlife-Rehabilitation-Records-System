@@ -26,7 +26,7 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
             DataGridView dgvPet,
             List<Animal> animals)
         {
-            // Feature 4.1 - this will check if any of our rows are selected
+            //Feature 4.1- this will check if any of our rows are selected
             if (dgvPet.SelectedRows.Count == 0)
             {
                 MessageBox.Show(
@@ -42,28 +42,28 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
                 dgvPet.SelectedRows[0];
 
             string animalId =
-                selectedRow.Cells[0].Value.ToString();
+             selectedRow.Cells[0].Value.ToString();
 
-            string animalName =
+                string animalName =
                 selectedRow.Cells[1].Value.ToString();
 
-            // Feature 4.2 - this is our confirmation prompt
+            // Feature4.2 -this is our confirmation prompt
             DialogResult result = MessageBox.Show(
                 $"Delete {animalId} ({animalName})? This cannot be undone.",
                 "Confirm Delete",
                 MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
+                  MessageBoxIcon.Warning);
 
             if (result == DialogResult.No)
             {
                 return false;
             }
 
-            // Feature 4.3 - Finding and removing the selected  animal
+            //Feature 4.3- Finding and removing the selected  animal
             Animal animalToDelete = animals.FirstOrDefault(a =>
                 a.AnimalId.Equals(
                     animalId,
-                    StringComparison.OrdinalIgnoreCase));
+                       StringComparison.OrdinalIgnoreCase));
 
             if (animalToDelete == null)
             {
@@ -72,8 +72,8 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
 
             animals.Remove(animalToDelete);
 
-            // Feature 4.4 - Rewriting animals.txt
-            bool success =
+            //Feature 4.4- Rewriting animals.txt
+             bool success =
                 _fileHandler.RewriteAllAnimals(animals);
 
             if (success)
@@ -81,7 +81,7 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
                 MessageBox.Show(
                     "Animal deleted successfully.",
                     "Deleted",
-                    MessageBoxButtons.OK,
+                 MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
 
