@@ -20,7 +20,7 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
        
         // Loads all valid animals from the text file. Skips malformed lines and tracks the skipped count.
 
-        // <param name="skippedLines">Outputs the number of lines that failed validation during load.
+        // "skippedLines">Outputs the number of lines that failed validation during load.
         // Returns a list of valid Animal objects.
 
         public List<Animal> LoadAnimals(out int skippedLines)
