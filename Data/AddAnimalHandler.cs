@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
 {
-    internal class AddAnimalHandler
+    public class AddAnimalHandler
     {
 
         // Handles input validation, classification, and persistence for adding a new animal record.
