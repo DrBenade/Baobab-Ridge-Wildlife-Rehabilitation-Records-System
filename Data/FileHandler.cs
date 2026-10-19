@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Models;
+using System;
 using System.Collections.Generic;
-using System.Text;
-
-//
 using System.IO;
-using Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Models;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
 {
@@ -14,79 +13,62 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
     
     public class FileHandler
     {
-        // The file is stored in the same folder as the running .exe
-        private const string FilePath = "animals.txt";
-        public int SkippedLines { get; set; }
+        //        // The file is stored in the same folder as the running .exe
+        //        private readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "animals.txt");
+        //        public int SkippedLines { get; set; }
 
-        // Loads all valid animals from the text file. Skips malformed lines and tracks the skipped count.
+        //        // Loads all valid animals from the text file. Skips malformed lines and tracks the skipped count.
 
-        // <param name="skippedLines">Outputs the number of lines that failed validation during load.
-        // Returns a list of valid Animal objects.
+        //        // <param name="skippedLines">Outputs the number of lines that failed validation during load.
+        //        // Returns a list of valid Animal objects.
 
-        public List<Animal> LoadAnimals()//out int skippedLines)
+        private static readonly string FilePath =
+               Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "animals.txt");
+       // private  Animal Animal { get; set; }
+
+        /// <summary>Loads all valid animals; counts malformed lines in skippedLines.</summary>
+        public  List<Animal> LoadAnimals(out int skippedLines)
         {
-            List<Animal> animals = new List<Animal>();
-            SkippedLines = 0;
+            Animal animal = new Animal();
+            var animals = new List<Animal>();
+            skippedLines = 0;
 
-            // Feature 2.5: If animals.txt does not exist, create an empty one and show an empty grid without an error
-            if (!File.Exists(FilePath))
-            {
-                try
-                {
-                    File.Create(FilePath).Close();
-                }
-                catch (Exception ex)
-                {
-                    ShowFriendlyError("missing file or folder", ex);
-                }
-                return animals; // Returns empty list, grid will load empty
-            }
+            if (!File.Exists(FilePath)) return animals;
 
             try
             {
-                string[] lines = File.ReadAllLines(FilePath, Encoding.UTF8);
-
-                foreach (string line in lines)
+                foreach (string line in File.ReadAllLines(FilePath))
                 {
-                    string[] parts = line.Split('|');
+                    if (string.IsNullOrWhiteSpace(line)) continue;
 
-                    // A line that is malformed (wrong number of fields) must be skipped
-                    if (parts.Length != 7)
+                    string[] p = line.Split('|');
+                    if (p.Length != 7 ||
+                        !Regex.IsMatch(p[0].Trim(), @"^WR-\d{4}$") ||
+                        !int.TryParse(p[3].Trim(), out int age) || age < 0 || age > 100 ||
+                        !int.TryParse(p[4].Trim(), out int score) || score < 0 || score > 100)
                     {
-                        SkippedLines++;
+                        skippedLines++;
                         continue;
                     }
 
-                    // Validate numeric age and score
-                    if (!int.TryParse(parts[3].Trim(), out int age) ||
-                        !int.TryParse(parts[4].Trim(), out int score))
-                    {
-                        SkippedLines++;
-                        continue;
-                    }
 
-                    // Validate ID format (WR- followed by exactly 4 digits)
-                    string id = parts[0].Trim().ToUpper();
-                    if (!id.StartsWith("WR-") || id.Length != 7 || !int.TryParse(id.Substring(3), out _))
+                    animals.Add(new Animal
                     {
-                        SkippedLines++;
-                        continue;
-                    }
-
-                    // Create the animal object
-                    Animal animal = new Animal
-                    {
-                        AnimalId = id,
-                        Name = parts[1].Trim(),
-                        Species = parts[2].Trim(),
+                        AnimalId = p[0].Trim(),
+                        Name = p[1].Trim(),
+                        Species = p[2].Trim(),
                         Age = age,
-                        RecoveryScore = score
-                    };
+                        RecoveryScore = score,
+                        Status = p[5].Trim(),
+                        HousingUnit = p[6].Trim()
+                    });
 
                     // Recalculate status and housing to ensure absolute data integrity matching the score
+                    
                     animal.CalculateStatusAndHousing();
-                    animals.Add(animal);
                 }
+   
+
             }
             catch (UnauthorizedAccessException ex)
             {
@@ -176,5 +158,33 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
             string message = $"A file error occurred ({errorType}).\n\nPlease check that the 'animals.txt' file is not open in another program or set to read-only.";
             MessageBox.Show(message, "File Access Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+
+        private bool IsValidAnimalID(string animalID)
+        {
+            if (animalID == null || animalID.Length != 7)
+            {
+                return false;
+            }
+
+            if (!animalID.StartsWith("WR-"))
+            {
+                return false;
+
+            }
+            else
+            {
+                for (int i = 3; i < animalID.Length; i++)
+                {
+                    if (!char.IsDigit(animalID[i]))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+       
+        }
     }
-}

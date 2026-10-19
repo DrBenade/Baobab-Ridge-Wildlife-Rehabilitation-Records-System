@@ -13,34 +13,35 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System
         }
         public void SetUpGrid()
         {
-            dgvPet.AutoGenerateColumns = true;
+            dgvPet.AutoGenerateColumns = false;   // we define the 7 columns ourselves
             dgvPet.Columns.Clear();
-
-            dgvPet.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Animal ID", DataPropertyName = "AnimalID" });
+            dgvPet.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Animal ID", DataPropertyName = "AnimalId" });
             dgvPet.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Name", DataPropertyName = "Name" });
             dgvPet.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Species", DataPropertyName = "Species" });
             dgvPet.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Age", DataPropertyName = "Age" });
-            dgvPet.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "RecoveryScore", DataPropertyName = "RecoveryScore" });
+            dgvPet.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Recovery Score", DataPropertyName = "RecoveryScore" });
             dgvPet.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Status", DataPropertyName = "Status" });
-            dgvPet.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "HousingUnit", DataPropertyName = "HousinUnit" });
+            dgvPet.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Housing Unit", DataPropertyName = "HousingUnit" });
 
             dgvPet.ReadOnly = true;
             dgvPet.AllowUserToAddRows = false;
             dgvPet.AllowUserToDeleteRows = false;
             dgvPet.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvPet.MultiSelect = false;
-            dgvPet.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
         }
 
         public void RefreshGrid()
         {
             try
             {
-                animals = handler.LoadAnimals();
+                animals = handler.LoadAnimals(out int skippedlines);
+                MessageBox.Show(
+                 "Path: " + Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "animals.txt") +
+                 "\nExists: " + File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "animals.txt")) +
+                 "\nLoaded: " + animals.Count +
+                 "\nSkipped: " + skippedlines);
                 dgvPet.DataSource = null;
                 dgvPet.DataSource = animals;
-                //lblOut.Text = $"{animals.Count} record(s) loaded. {reader.SkippedRecords} invalid record(s) skipped.";
+              
             }
             catch (IOException ex)
             {
