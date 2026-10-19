@@ -11,22 +11,22 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
 
     // Handles all file reading and writing operations for the animals.txt file.
     // Wraps operations in error handling to prevent application crashes during file locks or missing files.
-
+    
     public class FileHandler
     {
         // The file is stored in the same folder as the running .exe
         private const string FilePath = "animals.txt";
+        public int SkippedLines { get; set; }
 
-       
         // Loads all valid animals from the text file. Skips malformed lines and tracks the skipped count.
 
         // <param name="skippedLines">Outputs the number of lines that failed validation during load.
         // Returns a list of valid Animal objects.
 
-        public List<Animal> LoadAnimals(out int skippedLines)
+        public List<Animal> LoadAnimals()//out int skippedLines)
         {
             List<Animal> animals = new List<Animal>();
-            skippedLines = 0;
+            SkippedLines = 0;
 
             // Feature 2.5: If animals.txt does not exist, create an empty one and show an empty grid without an error
             if (!File.Exists(FilePath))
@@ -44,7 +44,7 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
 
             try
             {
-                string[] lines = File.ReadAllLines(FilePath);
+                string[] lines = File.ReadAllLines(FilePath, Encoding.UTF8);
 
                 foreach (string line in lines)
                 {
@@ -53,7 +53,7 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
                     // A line that is malformed (wrong number of fields) must be skipped
                     if (parts.Length != 7)
                     {
-                        skippedLines++;
+                        SkippedLines++;
                         continue;
                     }
 
@@ -61,7 +61,7 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
                     if (!int.TryParse(parts[3].Trim(), out int age) ||
                         !int.TryParse(parts[4].Trim(), out int score))
                     {
-                        skippedLines++;
+                        SkippedLines++;
                         continue;
                     }
 
@@ -69,7 +69,7 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
                     string id = parts[0].Trim().ToUpper();
                     if (!id.StartsWith("WR-") || id.Length != 7 || !int.TryParse(id.Substring(3), out _))
                     {
-                        skippedLines++;
+                        SkippedLines++;
                         continue;
                     }
 
