@@ -1,0 +1,101 @@
+deletion button rough work (this is just rough work!!)
+4.1
+(need in mainform)...
+private void btnDelete_Click(object sender, EventArgs e)
+{
+
+}
+4.1
+private void btnDelete_Click(object sender, EventArgs e)
+{
+    if (dgvAnimals.SelectedRows.Count == 0)
+    {
+        MessageBox.Show(
+            "Please select an animal to delete.",
+            "No Selection",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Warning);
+
+        return;
+    }
+}
+
++ 4.2...
+private void btnDelete_Click(object sender, EventArgs e)
+{
+    // Feature 4.1 - Check if a row is selected
+    if (dgvAnimals.SelectedRows.Count == 0)
+    {
+        MessageBox.Show(
+            "Please select an animal to delete.",
+            "No Selection",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Warning);
+
+        return;
+    }
+
+    // Feature 4.2 - Get Animal ID and Name
+    DataGridViewRow selectedRow =
+        dgvAnimals.SelectedRows[0];
+
+    string animalId =
+        selectedRow.Cells[0].Value.ToString();
+
+    string animalName =
+        selectedRow.Cells[1].Value.ToString();
+
+    // Show confirmation dialog
+    DialogResult result = MessageBox.Show(
+        $"Delete {animalId} ({animalName})? This cannot be undone.",
+        "Confirm Delete",
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Warning);
+
+    // If user selects No, stop
+    if (result == DialogResult.No)
+    {
+        return;
+    }
+
+    // Feature 4.3-----
+}
+4.3 
+
+// Find the animal in the active list
+Animal animalToDelete = animals.FirstOrDefault(a =>
+    a.AnimalId.Equals(
+        animalId,
+        StringComparison.OrdinalIgnoreCase));
+
+// Remove only this animal if found
+if (animalToDelete != null)
+{
+    animals.Remove(animalToDelete);
+
+    // Rewrite animals.txt with the updated list
+    bool success =
+        fileHandler.RewriteAllAnimals(animals);
+
+    if (success)
+    {
+        // Refresh the grid to show the deletion
+        RefreshGrid();
+
+        // If this animal was loaded into the textboxes,
+        // clear the inputs and exit edit mode
+        if (txtAnimalId.Text.Equals(
+            animalId,
+            StringComparison.OrdinalIgnoreCase))
+        {
+            ClearInputs();
+            SetEditMode(false);
+        }
+
+        MessageBox.Show(
+            "Animal deleted successfully.",
+            "Deleted",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+    }
+}
