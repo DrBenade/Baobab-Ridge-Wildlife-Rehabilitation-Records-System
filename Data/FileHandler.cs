@@ -21,6 +21,8 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
 
         //        // <param name="skippedLines">Outputs the number of lines that failed validation during load.
         //        // Returns a list of valid Animal objects.
+        // "skippedLines">Outputs the number of lines that failed validation during load.
+        // Returns a list of valid Animal objects.
 
         private static readonly string FilePath =
                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "animals.txt");
