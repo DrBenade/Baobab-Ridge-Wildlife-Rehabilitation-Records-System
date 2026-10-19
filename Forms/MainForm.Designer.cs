@@ -406,6 +406,7 @@
             Margin = new Padding(2);
             Name = "DashBoard";
             Text = "DashBoard";
+            Load += DashBoard_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvPet).EndInit();
             panel1.ResumeLayout(false);
