@@ -1,26 +1,8 @@
-deletion button rough work (this is just rough work!!)
-4.1
-(need in mainform)...
-private void btnDelete_Click(object sender, EventArgs e)
-{
 
-}
-4.1
-private void btnDelete_Click(object sender, EventArgs e)
-{
-    if (dgvAnimals.SelectedRows.Count == 0)
-    {
-        MessageBox.Show(
-            "Please select an animal to delete.",
-            "No Selection",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Warning);
 
-        return;
-    }
-}
-
-+ 4.2...
+/// <summary>
+/// Deletes the selected animal after confirmation.
+/// </summary>
 private void btnDelete_Click(object sender, EventArgs e)
 {
     // Feature 4.1 - Check if a row is selected
@@ -35,67 +17,75 @@ private void btnDelete_Click(object sender, EventArgs e)
         return;
     }
 
-    // Feature 4.2 - Get Animal ID and Name
+    // Get selected row
     DataGridViewRow selectedRow =
         dgvAnimals.SelectedRows[0];
 
+    // Get Animal ID
     string animalId =
         selectedRow.Cells[0].Value.ToString();
 
+    // Get Animal Name
     string animalName =
         selectedRow.Cells[1].Value.ToString();
 
-    // Show confirmation dialog
+    // Feature 4.2 - Confirmation dialog
     DialogResult result = MessageBox.Show(
         $"Delete {animalId} ({animalName})? This cannot be undone.",
         "Confirm Delete",
         MessageBoxButtons.YesNo,
         MessageBoxIcon.Warning);
 
-    // If user selects No, stop
+    // User selected No
     if (result == DialogResult.No)
     {
         return;
     }
 
-    // Feature 4.3-----
-}
-4.3 
-
-// Find the animal in the active list
-Animal animalToDelete = animals.FirstOrDefault(a =>
-    a.AnimalId.Equals(
-        animalId,
-        StringComparison.OrdinalIgnoreCase));
-
-// Remove only this animal if found
-if (animalToDelete != null)
-{
-    animals.Remove(animalToDelete);
-
-    // Rewrite animals.txt with the updated list
-    bool success =
-        fileHandler.RewriteAllAnimals(animals);
-
-    if (success)
-    {
-        // Refresh the grid to show the deletion
-        RefreshGrid();
-
-        // If this animal was loaded into the textboxes,
-        // clear the inputs and exit edit mode
-        if (txtAnimalId.Text.Equals(
+    // Feature 4.3 - Find animal in collection
+    Animal animalToDelete = animals.FirstOrDefault(a =>
+        a.AnimalId.Equals(
             animalId,
-            StringComparison.OrdinalIgnoreCase))
-        {
-            ClearInputs();
-            SetEditMode(false);
-        }
+            StringComparison.OrdinalIgnoreCase));
 
-        MessageBox.Show(
-            "Animal deleted successfully.",
-            "Deleted",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information);
+    // Remove animal from collection
+    if (animalToDelete != null)
+    {
+        animals.Remove(animalToDelete);
+
+        // Feature 4.4 - Rewrite animals.txt
+        bool success =
+            fileHandler.RewriteAllAnimals(animals);
+
+        if (success)
+        {
+            // Refresh DataGridView
+            RefreshGrid();
+
+            // Feature 4.3 - UI Cleanup
+            if (txtAnimalId.Text.Equals(
+                animalId,
+                StringComparison.OrdinalIgnoreCase))
+            {
+                ClearInputs();
+
+                // Only if Edit Mode exists
+                SetEditMode(false);
+            }
+
+            MessageBox.Show(
+                "Animal deleted successfully.",
+                "Deleted",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+        else
+        {
+            MessageBox.Show(
+                "Failed to update animals.txt.",
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+        }
     }
 }
