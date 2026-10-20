@@ -12,11 +12,13 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
     /// </summary>
     public class DeleteAnimalHandler
     {
-        private readonly FileHandler _fileHandler;
+        private readonly FileHandler _fileHandler ;
 
         public DeleteAnimalHandler(FileHandler fileHandler)
         {
             _fileHandler = fileHandler ?? new FileHandler();
+        
+        
         }
 
         /// <summary>
