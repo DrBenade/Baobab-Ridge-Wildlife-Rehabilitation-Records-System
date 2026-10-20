@@ -23,7 +23,7 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
 
         // Validates user inputs from the form, calculates classification, appends the record to animals.txt,
         // shows the confirmation message, clears the inputs, and triggers a grid refresh.
-        
+
         // True if the animal was validated and saved successfully; otherwise, false.
         public bool AddNewAnimal(
             TextBox txtAnimalId,
@@ -31,13 +31,13 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
             TextBox txtSpecies,
             TextBox txtAge,
             TextBox txtRecoveryScore,
-            List<Animal> existingAnimals,
-            Action refreshGridCallback = null)
+            List<Animal> existingAnimals
+            )
         {
             // Ensure we have a valid list to check ID uniqueness against
             List<Animal> currentRecords = existingAnimals ?? _fileHandler.LoadAnimals(out _);
 
-            // Step 1: Validate all fields according to Section 3 rules (isEditMode = false checks ID uniqueness)
+            // Step 1: Validate all fields (isEditMode = false checks ID uniqueness)
             if (!ValidateInputs(
                 txtAnimalId,
                 txtName,
@@ -62,7 +62,10 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
                 return false;
             }
 
-            // Step 4: Show confirmation message with the calculated Status and Housing Unit
+            // Step 4: Sync the in-memory list so the grid has the new data
+            currentRecords.Add(validatedAnimal);
+
+            // Step 5: Show confirmation message with the calculated Status and Housing Unit
             MessageBox.Show(
                 $"Animal '{validatedAnimal.Name}' ({validatedAnimal.AnimalId}) has been added successfully.\n\n" +
                 $"Status: {validatedAnimal.Status}\n" +
@@ -71,17 +74,14 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
 
-            // Step 5: Clear input boxes and prepare the form for the next animal
+            // Step 6: Clear input boxes and prepare the form for the next animal
             ClearInputBoxes(txtAnimalId, txtName, txtSpecies, txtAge, txtRecoveryScore);
-
-            // Step 6: Trigger the DataGridView refresh
-            refreshGridCallback?.Invoke();
 
             return true;
         }
+        
 
-
-        // Trims and validates all input fields against the Section 3 rules.
+        // Trims and validates all input fields.
         // Can be reused by both Add (isEditMode = false) and Update (isEditMode = true).
        
         // True if all fields are valid; otherwise, false.
@@ -238,6 +238,48 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
             txtAge.Clear();
             txtRecoveryScore.Clear();
             txtAnimalId.Focus();
+        }
+
+
+
+
+        // Generates the next available Animal ID by finding the highest existing ID number and incrementing it by 1
+        // Will return a formatted string representing the next available ID (e.g., "WR-0021").
+        public string GenerateNextAnimalId(List<Animal> existingAnimals)
+        {
+            List<Animal> currentRecords = existingAnimals ?? _fileHandler.LoadAnimals(out _);
+
+            // If there are no records, start at WR-0001
+            if (currentRecords == null || currentRecords.Count == 0)
+            {
+                return "WR-0001";
+            }
+
+            int maxIdNumber = 0;
+
+            foreach (Animal animal in currentRecords)
+            {
+                // Verify the ID matches the expected format before attempting to parse
+                if (!string.IsNullOrEmpty(animal.AnimalId) &&
+                    animal.AnimalId.Length == 7 &&
+                    animal.AnimalId.StartsWith("WR-", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Extract the last 4 characters and parse to an integer
+                    if (int.TryParse(animal.AnimalId.Substring(3), out int currentNumber))
+                    {
+                        if (currentNumber > maxIdNumber)
+                        {
+                            maxIdNumber = currentNumber;
+                        }
+                    }
+                }
+            }
+
+            // Increment the highest found number
+            int nextIdNumber = maxIdNumber + 1;
+
+            // Return formatted as WR- followed by exactly 4 digits (e.g., 21 becomes WR-0021)
+            return $"WR-{nextIdNumber:D4}";
         }
     }
 }

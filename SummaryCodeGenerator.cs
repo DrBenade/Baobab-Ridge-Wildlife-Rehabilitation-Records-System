@@ -5,7 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Models;
 
-namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
+namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data { 
 
     /// Handles the generation of the summary report for all animals in the system.
     public class SummaryGenerator

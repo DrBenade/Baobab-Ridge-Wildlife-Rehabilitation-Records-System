@@ -29,397 +29,541 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashBoard));
-            pictureBox1 = new PictureBox();
+            pbxShelter = new PictureBox();
             pnlSearch = new Panel();
-            cmbRecoveryScoreV = new ComboBox();
-            btnSearchV = new Button();
-            txtSearch = new TextBox();
-            dtpToDateV = new DateTimePicker();
-            dtpFromDate = new DateTimePicker();
-            lblToDateV = new Label();
-            label4 = new Label();
-            lblRecoveryScoreV = new Label();
-            label1 = new Label();
-            txtAgeV = new TextBox();
-            btnResetV = new Button();
-            btnApplyV = new Button();
-            label3 = new Label();
-            btnGenerate = new Button();
+            btnSearchName = new Button();
+            btnSearchSpecies = new Button();
+            btnSearchAge = new Button();
+            btnSearchRecovery = new Button();
+            cmbSpeciesSearch = new ComboBox();
+            txtSearchName = new TextBox();
+            txtSearchAge = new TextBox();
+            lblIDSearch = new Label();
+            lblNameSearch = new Label();
+            lblSpeciesSearch = new Label();
+            cmbRecoveryScoreSearch = new ComboBox();
+            btnSearchID = new Button();
+            txtSearchID = new TextBox();
+            lblSearchRecoveryScore = new Label();
+            lblAgeSearch = new Label();
+            btnResetSearch = new Button();
+            lblSearchHeading = new Label();
+            btnGenerateSummary = new Button();
             dgvPet = new DataGridView();
-            lblAnimalIdA = new Label();
-            label2 = new Label();
+            lblAnimalID = new Label();
+            lblPetName = new Label();
             lblSpecies = new Label();
             lblRecoveryScore = new Label();
             lblStatus = new Label();
-            label6 = new Label();
-            lblAgeA = new Label();
+            lblHousingUnit = new Label();
+            lblAge = new Label();
             txtPetID = new TextBox();
             txtAge = new TextBox();
             txtSpecies = new TextBox();
             txtPetName = new TextBox();
             btnSave = new Button();
-            btnCancelA = new Button();
-            cmbRecoveryScore = new ComboBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            button1 = new Button();
+            btnCancel = new Button();
+            txtRecoveryScore = new TextBox();
+            txtStatus = new TextBox();
+            txtHousingUnit = new TextBox();
+            btnAddPet = new Button();
             btnDelete = new Button();
             pnlController = new Panel();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            btnAutoFillID = new Button();
+            btnExit = new Button();
+            ((System.ComponentModel.ISupportInitialize)pbxShelter).BeginInit();
             pnlSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPet).BeginInit();
             pnlController.SuspendLayout();
             SuspendLayout();
             // 
-            // pictureBox1
+            // pbxShelter
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(795, 21);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(458, 416);
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+            pbxShelter.Image = (Image)resources.GetObject("pbxShelter.Image");
+            pbxShelter.Location = new Point(1250, 32);
+            pbxShelter.Margin = new Padding(4, 5, 4, 5);
+            pbxShelter.Name = "pbxShelter";
+            pbxShelter.Size = new Size(719, 637);
+            pbxShelter.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbxShelter.TabIndex = 1;
+            pbxShelter.TabStop = false;
+            pbxShelter.Click += pbxShelter_Click;
             // 
             // pnlSearch
             // 
             pnlSearch.BackColor = SystemColors.ControlLight;
-            pnlSearch.Controls.Add(cmbRecoveryScoreV);
-            pnlSearch.Controls.Add(btnSearchV);
-            pnlSearch.Controls.Add(txtSearch);
-            pnlSearch.Controls.Add(dtpToDateV);
-            pnlSearch.Controls.Add(dtpFromDate);
-            pnlSearch.Controls.Add(lblToDateV);
-            pnlSearch.Controls.Add(label4);
-            pnlSearch.Controls.Add(lblRecoveryScoreV);
-            pnlSearch.Controls.Add(label1);
-            pnlSearch.Controls.Add(txtAgeV);
-            pnlSearch.Controls.Add(btnResetV);
-            pnlSearch.Controls.Add(btnApplyV);
-            pnlSearch.Controls.Add(label3);
-            pnlSearch.Location = new Point(795, 453);
+            pnlSearch.Controls.Add(btnExit);
+            pnlSearch.Controls.Add(btnSearchName);
+            pnlSearch.Controls.Add(btnSearchSpecies);
+            pnlSearch.Controls.Add(btnSearchAge);
+            pnlSearch.Controls.Add(btnSearchRecovery);
+            pnlSearch.Controls.Add(cmbSpeciesSearch);
+            pnlSearch.Controls.Add(txtSearchName);
+            pnlSearch.Controls.Add(txtSearchAge);
+            pnlSearch.Controls.Add(lblIDSearch);
+            pnlSearch.Controls.Add(lblNameSearch);
+            pnlSearch.Controls.Add(lblSpeciesSearch);
+            pnlSearch.Controls.Add(cmbRecoveryScoreSearch);
+            pnlSearch.Controls.Add(btnSearchID);
+            pnlSearch.Controls.Add(txtSearchID);
+            pnlSearch.Controls.Add(lblSearchRecoveryScore);
+            pnlSearch.Controls.Add(lblAgeSearch);
+            pnlSearch.Controls.Add(btnResetSearch);
+            pnlSearch.Controls.Add(lblSearchHeading);
+            pnlSearch.Location = new Point(1250, 695);
+            pnlSearch.Margin = new Padding(4, 5, 4, 5);
             pnlSearch.Name = "pnlSearch";
-            pnlSearch.Size = new Size(458, 277);
+            pnlSearch.Size = new Size(719, 468);
             pnlSearch.TabIndex = 38;
             // 
-            // cmbRecoveryScoreV
+            // btnSearchName
             // 
-            cmbRecoveryScoreV.FormattingEnabled = true;
-            cmbRecoveryScoreV.Location = new Point(33, 120);
-            cmbRecoveryScoreV.Name = "cmbRecoveryScoreV";
-            cmbRecoveryScoreV.Size = new Size(121, 23);
-            cmbRecoveryScoreV.TabIndex = 15;
+            btnSearchName.Font = new Font("Cambria", 11F);
+            btnSearchName.Location = new Point(578, 130);
+            btnSearchName.Margin = new Padding(4, 5, 4, 5);
+            btnSearchName.Name = "btnSearchName";
+            btnSearchName.Size = new Size(118, 35);
+            btnSearchName.TabIndex = 26;
+            btnSearchName.Text = "Search";
+            btnSearchName.UseVisualStyleBackColor = true;
+            btnSearchName.Click += btnSearchName_Click;
             // 
-            // btnSearchV
+            // btnSearchSpecies
             // 
-            btnSearchV.Location = new Point(162, 41);
-            btnSearchV.Name = "btnSearchV";
-            btnSearchV.Size = new Size(75, 23);
-            btnSearchV.TabIndex = 14;
-            btnSearchV.Text = "Search";
-            btnSearchV.UseVisualStyleBackColor = true;
+            btnSearchSpecies.Font = new Font("Cambria", 11F);
+            btnSearchSpecies.Location = new Point(578, 183);
+            btnSearchSpecies.Margin = new Padding(4, 5, 4, 5);
+            btnSearchSpecies.Name = "btnSearchSpecies";
+            btnSearchSpecies.Size = new Size(118, 35);
+            btnSearchSpecies.TabIndex = 25;
+            btnSearchSpecies.Text = "Search";
+            btnSearchSpecies.UseVisualStyleBackColor = true;
+            btnSearchSpecies.Click += btnSearchSpecies_Click;
             // 
-            // txtSearch
+            // btnSearchAge
             // 
-            txtSearch.Location = new Point(28, 42);
-            txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(128, 23);
-            txtSearch.TabIndex = 13;
-            txtSearch.Text = "Search";
+            btnSearchAge.Font = new Font("Cambria", 11F);
+            btnSearchAge.Location = new Point(578, 234);
+            btnSearchAge.Margin = new Padding(4, 5, 4, 5);
+            btnSearchAge.Name = "btnSearchAge";
+            btnSearchAge.Size = new Size(118, 35);
+            btnSearchAge.TabIndex = 24;
+            btnSearchAge.Text = "Search";
+            btnSearchAge.UseVisualStyleBackColor = true;
+            btnSearchAge.Click += btnSearchAge_Click;
             // 
-            // dtpToDateV
+            // btnSearchRecovery
             // 
-            dtpToDateV.Location = new Point(225, 188);
-            dtpToDateV.Name = "dtpToDateV";
-            dtpToDateV.Size = new Size(142, 23);
-            dtpToDateV.TabIndex = 12;
+            btnSearchRecovery.Font = new Font("Cambria", 11F);
+            btnSearchRecovery.Location = new Point(578, 286);
+            btnSearchRecovery.Margin = new Padding(4, 5, 4, 5);
+            btnSearchRecovery.Name = "btnSearchRecovery";
+            btnSearchRecovery.Size = new Size(118, 35);
+            btnSearchRecovery.TabIndex = 23;
+            btnSearchRecovery.Text = "Search";
+            btnSearchRecovery.UseVisualStyleBackColor = true;
+            btnSearchRecovery.Click += btnSearchRecovery_Click;
             // 
-            // dtpFromDate
+            // cmbSpeciesSearch
             // 
-            dtpFromDate.Location = new Point(28, 188);
-            dtpFromDate.Name = "dtpFromDate";
-            dtpFromDate.Size = new Size(142, 23);
-            dtpFromDate.TabIndex = 11;
+            cmbSpeciesSearch.Font = new Font("Cambria", 11F);
+            cmbSpeciesSearch.FormattingEnabled = true;
+            cmbSpeciesSearch.Location = new Point(253, 180);
+            cmbSpeciesSearch.Margin = new Padding(4, 5, 4, 5);
+            cmbSpeciesSearch.Name = "cmbSpeciesSearch";
+            cmbSpeciesSearch.Size = new Size(307, 34);
+            cmbSpeciesSearch.TabIndex = 22;
             // 
-            // lblToDateV
+            // txtSearchName
             // 
-            lblToDateV.AutoSize = true;
-            lblToDateV.Location = new Point(225, 170);
-            lblToDateV.Name = "lblToDateV";
-            lblToDateV.Size = new Size(50, 15);
-            lblToDateV.TabIndex = 10;
-            lblToDateV.Text = "To Date:";
+            txtSearchName.Font = new Font("Cambria", 11F);
+            txtSearchName.Location = new Point(253, 130);
+            txtSearchName.Margin = new Padding(4, 5, 4, 5);
+            txtSearchName.Name = "txtSearchName";
+            txtSearchName.Size = new Size(307, 33);
+            txtSearchName.TabIndex = 21;
             // 
-            // label4
+            // txtSearchAge
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(28, 170);
-            label4.Name = "label4";
-            label4.Size = new Size(65, 15);
-            label4.TabIndex = 9;
-            label4.Text = "From Date:";
+            txtSearchAge.Font = new Font("Cambria", 11F);
+            txtSearchAge.Location = new Point(253, 235);
+            txtSearchAge.Margin = new Padding(4, 5, 4, 5);
+            txtSearchAge.Name = "txtSearchAge";
+            txtSearchAge.Size = new Size(307, 33);
+            txtSearchAge.TabIndex = 20;
             // 
-            // lblRecoveryScoreV
+            // lblIDSearch
             // 
-            lblRecoveryScoreV.AutoSize = true;
-            lblRecoveryScoreV.Location = new Point(28, 89);
-            lblRecoveryScoreV.Name = "lblRecoveryScoreV";
-            lblRecoveryScoreV.Size = new Size(87, 15);
-            lblRecoveryScoreV.TabIndex = 8;
-            lblRecoveryScoreV.Text = "Recovery Score";
+            lblIDSearch.AutoSize = true;
+            lblIDSearch.Font = new Font("Cambria", 11F);
+            lblIDSearch.Location = new Point(44, 80);
+            lblIDSearch.Margin = new Padding(4, 0, 4, 0);
+            lblIDSearch.Name = "lblIDSearch";
+            lblIDSearch.Size = new Size(69, 26);
+            lblIDSearch.TabIndex = 19;
+            lblIDSearch.Text = "By ID:";
             // 
-            // label1
+            // lblNameSearch
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(225, 93);
-            label1.Name = "label1";
-            label1.Size = new Size(28, 15);
-            label1.TabIndex = 7;
-            label1.Text = "Age";
+            lblNameSearch.AutoSize = true;
+            lblNameSearch.Font = new Font("Cambria", 11F);
+            lblNameSearch.Location = new Point(44, 133);
+            lblNameSearch.Margin = new Padding(4, 0, 4, 0);
+            lblNameSearch.Name = "lblNameSearch";
+            lblNameSearch.Size = new Size(102, 26);
+            lblNameSearch.TabIndex = 18;
+            lblNameSearch.Text = "By Name:";
             // 
-            // txtAgeV
+            // lblSpeciesSearch
             // 
-            txtAgeV.Location = new Point(225, 114);
-            txtAgeV.Name = "txtAgeV";
-            txtAgeV.Size = new Size(100, 23);
-            txtAgeV.TabIndex = 6;
+            lblSpeciesSearch.AutoSize = true;
+            lblSpeciesSearch.Font = new Font("Cambria", 11F);
+            lblSpeciesSearch.Location = new Point(44, 187);
+            lblSpeciesSearch.Margin = new Padding(4, 0, 4, 0);
+            lblSpeciesSearch.Name = "lblSpeciesSearch";
+            lblSpeciesSearch.Size = new Size(117, 26);
+            lblSpeciesSearch.TabIndex = 17;
+            lblSpeciesSearch.Text = "By Species:";
             // 
-            // btnResetV
+            // cmbRecoveryScoreSearch
             // 
-            btnResetV.Location = new Point(225, 246);
-            btnResetV.Name = "btnResetV";
-            btnResetV.Size = new Size(75, 23);
-            btnResetV.TabIndex = 5;
-            btnResetV.Text = "Reset";
-            btnResetV.UseVisualStyleBackColor = true;
+            cmbRecoveryScoreSearch.Font = new Font("Cambria", 11F);
+            cmbRecoveryScoreSearch.FormattingEnabled = true;
+            cmbRecoveryScoreSearch.Items.AddRange(new object[] { "0-19", "20-39", "40-59", "60-79", "80-100" });
+            cmbRecoveryScoreSearch.Location = new Point(253, 287);
+            cmbRecoveryScoreSearch.Margin = new Padding(4, 5, 4, 5);
+            cmbRecoveryScoreSearch.Name = "cmbRecoveryScoreSearch";
+            cmbRecoveryScoreSearch.Size = new Size(307, 34);
+            cmbRecoveryScoreSearch.TabIndex = 15;
             // 
-            // btnApplyV
+            // btnSearchID
             // 
-            btnApplyV.Location = new Point(101, 246);
-            btnApplyV.Name = "btnApplyV";
-            btnApplyV.Size = new Size(75, 23);
-            btnApplyV.TabIndex = 3;
-            btnApplyV.Text = "Apply";
-            btnApplyV.UseVisualStyleBackColor = true;
+            btnSearchID.Font = new Font("Cambria", 11F);
+            btnSearchID.Location = new Point(578, 76);
+            btnSearchID.Margin = new Padding(4, 5, 4, 5);
+            btnSearchID.Name = "btnSearchID";
+            btnSearchID.Size = new Size(118, 35);
+            btnSearchID.TabIndex = 14;
+            btnSearchID.Text = "Search";
+            btnSearchID.UseVisualStyleBackColor = true;
+            btnSearchID.Click += btnSearchID_Click;
             // 
-            // label3
+            // txtSearchID
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(139, 10);
-            label3.Name = "label3";
-            label3.Size = new Size(87, 15);
-            label3.TabIndex = 0;
-            label3.Text = "Search For Pets";
+            txtSearchID.Font = new Font("Cambria", 11F);
+            txtSearchID.Location = new Point(253, 77);
+            txtSearchID.Margin = new Padding(4, 5, 4, 5);
+            txtSearchID.Name = "txtSearchID";
+            txtSearchID.Size = new Size(307, 33);
+            txtSearchID.TabIndex = 13;
             // 
-            // btnGenerate
+            // lblSearchRecoveryScore
             // 
-            btnGenerate.Location = new Point(12, 419);
-            btnGenerate.Name = "btnGenerate";
-            btnGenerate.Size = new Size(154, 23);
-            btnGenerate.TabIndex = 40;
-            btnGenerate.Text = "Generate Summary";
-            btnGenerate.UseVisualStyleBackColor = true;
+            lblSearchRecoveryScore.AutoSize = true;
+            lblSearchRecoveryScore.Font = new Font("Cambria", 11F);
+            lblSearchRecoveryScore.Location = new Point(44, 290);
+            lblSearchRecoveryScore.Margin = new Padding(4, 0, 4, 0);
+            lblSearchRecoveryScore.Name = "lblSearchRecoveryScore";
+            lblSearchRecoveryScore.Size = new Size(194, 26);
+            lblSearchRecoveryScore.TabIndex = 8;
+            lblSearchRecoveryScore.Text = "By Recovery Score:";
+            // 
+            // lblAgeSearch
+            // 
+            lblAgeSearch.AutoSize = true;
+            lblAgeSearch.Font = new Font("Cambria", 11F);
+            lblAgeSearch.Location = new Point(44, 238);
+            lblAgeSearch.Margin = new Padding(4, 0, 4, 0);
+            lblAgeSearch.Name = "lblAgeSearch";
+            lblAgeSearch.Size = new Size(83, 26);
+            lblAgeSearch.TabIndex = 7;
+            lblAgeSearch.Text = "By Age:";
+            // 
+            // btnResetSearch
+            // 
+            btnResetSearch.Font = new Font("Cambria", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnResetSearch.Location = new Point(44, 369);
+            btnResetSearch.Margin = new Padding(4, 5, 4, 5);
+            btnResetSearch.Name = "btnResetSearch";
+            btnResetSearch.Size = new Size(275, 54);
+            btnResetSearch.TabIndex = 5;
+            btnResetSearch.Text = "Reset Output";
+            btnResetSearch.UseVisualStyleBackColor = true;
+            btnResetSearch.Click += btnResetSearch_Click;
+            // 
+            // lblSearchHeading
+            // 
+            lblSearchHeading.AutoSize = true;
+            lblSearchHeading.Font = new Font("Cambria", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSearchHeading.Location = new Point(44, 25);
+            lblSearchHeading.Margin = new Padding(4, 0, 4, 0);
+            lblSearchHeading.Name = "lblSearchHeading";
+            lblSearchHeading.Size = new Size(219, 33);
+            lblSearchHeading.TabIndex = 0;
+            lblSearchHeading.Text = "Search For Pets:";
+            // 
+            // btnGenerateSummary
+            // 
+            btnGenerateSummary.Location = new Point(19, 642);
+            btnGenerateSummary.Margin = new Padding(4, 5, 4, 5);
+            btnGenerateSummary.Name = "btnGenerateSummary";
+            btnGenerateSummary.Size = new Size(242, 35);
+            btnGenerateSummary.TabIndex = 40;
+            btnGenerateSummary.Text = "Generate Summary";
+            btnGenerateSummary.UseVisualStyleBackColor = true;
+            btnGenerateSummary.Click += btnGenerateSummary_Click;
             // 
             // dgvPet
             // 
             dgvPet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPet.Location = new Point(12, 453);
+            dgvPet.Location = new Point(19, 695);
+            dgvPet.Margin = new Padding(4, 5, 4, 5);
             dgvPet.Name = "dgvPet";
-            dgvPet.Size = new Size(770, 277);
+            dgvPet.RowHeadersWidth = 62;
+            dgvPet.Size = new Size(1210, 468);
             dgvPet.TabIndex = 43;
+            dgvPet.CellClick += dgvPet_CellClick;
             // 
-            // lblAnimalIdA
+            // lblAnimalID
             // 
-            lblAnimalIdA.AutoSize = true;
-            lblAnimalIdA.Location = new Point(15, 13);
-            lblAnimalIdA.Name = "lblAnimalIdA";
-            lblAnimalIdA.Size = new Size(59, 15);
-            lblAnimalIdA.TabIndex = 21;
-            lblAnimalIdA.Text = "Animal ID";
+            lblAnimalID.AutoSize = true;
+            lblAnimalID.Location = new Point(21, 23);
+            lblAnimalID.Margin = new Padding(4, 0, 4, 0);
+            lblAnimalID.Name = "lblAnimalID";
+            lblAnimalID.Size = new Size(99, 23);
+            lblAnimalID.TabIndex = 21;
+            lblAnimalID.Text = "Animal ID:";
             // 
-            // label2
+            // lblPetName
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(15, 62);
-            label2.Name = "label2";
-            label2.Size = new Size(59, 15);
-            label2.TabIndex = 22;
-            label2.Text = "Pet Name";
+            lblPetName.AutoSize = true;
+            lblPetName.Location = new Point(23, 94);
+            lblPetName.Margin = new Padding(4, 0, 4, 0);
+            lblPetName.Name = "lblPetName";
+            lblPetName.Size = new Size(98, 23);
+            lblPetName.TabIndex = 22;
+            lblPetName.Text = "Pet Name:";
             // 
             // lblSpecies
             // 
             lblSpecies.AutoSize = true;
-            lblSpecies.Location = new Point(15, 113);
+            lblSpecies.Location = new Point(23, 173);
+            lblSpecies.Margin = new Padding(4, 0, 4, 0);
             lblSpecies.Name = "lblSpecies";
-            lblSpecies.Size = new Size(46, 15);
+            lblSpecies.Size = new Size(80, 23);
             lblSpecies.TabIndex = 23;
-            lblSpecies.Text = "Species";
+            lblSpecies.Text = "Species:";
             // 
             // lblRecoveryScore
             // 
             lblRecoveryScore.AutoSize = true;
-            lblRecoveryScore.Location = new Point(15, 216);
+            lblRecoveryScore.Location = new Point(23, 331);
+            lblRecoveryScore.Margin = new Padding(4, 0, 4, 0);
             lblRecoveryScore.Name = "lblRecoveryScore";
-            lblRecoveryScore.Size = new Size(87, 15);
+            lblRecoveryScore.Size = new Size(147, 23);
             lblRecoveryScore.TabIndex = 24;
-            lblRecoveryScore.Text = "Recovery Score";
+            lblRecoveryScore.Text = "Recovery Score:";
             // 
             // lblStatus
             // 
             lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(15, 261);
+            lblStatus.Location = new Point(23, 400);
+            lblStatus.Margin = new Padding(4, 0, 4, 0);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(39, 15);
+            lblStatus.Size = new Size(69, 23);
             lblStatus.TabIndex = 25;
-            lblStatus.Text = "Status";
+            lblStatus.Text = "Status:";
             // 
-            // label6
+            // lblHousingUnit
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(15, 306);
-            label6.Name = "label6";
-            label6.Size = new Size(77, 15);
-            label6.TabIndex = 26;
-            label6.Text = "Housing Unit";
+            lblHousingUnit.AutoSize = true;
+            lblHousingUnit.Location = new Point(23, 469);
+            lblHousingUnit.Margin = new Padding(4, 0, 4, 0);
+            lblHousingUnit.Name = "lblHousingUnit";
+            lblHousingUnit.Size = new Size(128, 23);
+            lblHousingUnit.TabIndex = 26;
+            lblHousingUnit.Text = "Housing Unit:";
             // 
-            // lblAgeA
+            // lblAge
             // 
-            lblAgeA.AutoSize = true;
-            lblAgeA.Location = new Point(15, 160);
-            lblAgeA.Name = "lblAgeA";
-            lblAgeA.Size = new Size(28, 15);
-            lblAgeA.TabIndex = 27;
-            lblAgeA.Text = "Age";
+            lblAge.AutoSize = true;
+            lblAge.Location = new Point(23, 246);
+            lblAge.Margin = new Padding(4, 0, 4, 0);
+            lblAge.Name = "lblAge";
+            lblAge.Size = new Size(47, 23);
+            lblAge.TabIndex = 27;
+            lblAge.Text = "Age:";
             // 
             // txtPetID
             // 
-            txtPetID.Location = new Point(134, 13);
+            txtPetID.Location = new Point(210, 21);
+            txtPetID.Margin = new Padding(4, 5, 4, 5);
             txtPetID.Name = "txtPetID";
-            txtPetID.Size = new Size(100, 23);
+            txtPetID.Size = new Size(286, 31);
             txtPetID.TabIndex = 28;
             // 
             // txtAge
             // 
-            txtAge.Location = new Point(134, 153);
+            txtAge.Location = new Point(210, 235);
+            txtAge.Margin = new Padding(4, 5, 4, 5);
             txtAge.Name = "txtAge";
-            txtAge.Size = new Size(100, 23);
+            txtAge.Size = new Size(286, 31);
             txtAge.TabIndex = 29;
             // 
             // txtSpecies
             // 
-            txtSpecies.Location = new Point(134, 105);
+            txtSpecies.Location = new Point(210, 161);
+            txtSpecies.Margin = new Padding(4, 5, 4, 5);
             txtSpecies.Name = "txtSpecies";
-            txtSpecies.Size = new Size(100, 23);
+            txtSpecies.Size = new Size(286, 31);
             txtSpecies.TabIndex = 30;
             // 
             // txtPetName
             // 
-            txtPetName.Location = new Point(134, 62);
+            txtPetName.Location = new Point(210, 94);
+            txtPetName.Margin = new Padding(4, 5, 4, 5);
             txtPetName.Name = "txtPetName";
-            txtPetName.Size = new Size(100, 23);
+            txtPetName.Size = new Size(286, 31);
             txtPetName.TabIndex = 31;
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(117, 355);
+            btnSave.Location = new Point(184, 545);
+            btnSave.Margin = new Padding(4, 5, 4, 5);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(102, 23);
+            btnSave.Size = new Size(161, 35);
             btnSave.TabIndex = 32;
             btnSave.Text = "Save changes";
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
-            // btnCancelA
+            // btnCancel
             // 
-            btnCancelA.BackColor = Color.IndianRed;
-            btnCancelA.Location = new Point(241, 355);
-            btnCancelA.Name = "btnCancelA";
-            btnCancelA.Size = new Size(75, 23);
-            btnCancelA.TabIndex = 33;
-            btnCancelA.Text = "Cancel";
-            btnCancelA.UseVisualStyleBackColor = false;
+            btnCancel.BackColor = Color.IndianRed;
+            btnCancel.Location = new Point(378, 545);
+            btnCancel.Margin = new Padding(4, 5, 4, 5);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(118, 35);
+            btnCancel.TabIndex = 33;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Click += btnCancel_Click;
             // 
-            // cmbRecoveryScore
+            // txtRecoveryScore
             // 
-            cmbRecoveryScore.FormattingEnabled = true;
-            cmbRecoveryScore.Location = new Point(134, 213);
-            cmbRecoveryScore.Name = "cmbRecoveryScore";
-            cmbRecoveryScore.Size = new Size(121, 23);
-            cmbRecoveryScore.TabIndex = 34;
+            txtRecoveryScore.Location = new Point(210, 327);
+            txtRecoveryScore.Margin = new Padding(4, 5, 4, 5);
+            txtRecoveryScore.Name = "txtRecoveryScore";
+            txtRecoveryScore.Size = new Size(286, 31);
+            txtRecoveryScore.TabIndex = 34;
             // 
-            // textBox1
+            // txtStatus
             // 
-            textBox1.Location = new Point(134, 253);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 35;
+            txtStatus.Enabled = false;
+            txtStatus.Location = new Point(210, 389);
+            txtStatus.Margin = new Padding(4, 5, 4, 5);
+            txtStatus.Name = "txtStatus";
+            txtStatus.Size = new Size(286, 31);
+            txtStatus.TabIndex = 35;
             // 
-            // textBox2
+            // txtHousingUnit
             // 
-            textBox2.Location = new Point(134, 298);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 36;
+            txtHousingUnit.Enabled = false;
+            txtHousingUnit.Location = new Point(210, 458);
+            txtHousingUnit.Margin = new Padding(4, 5, 4, 5);
+            txtHousingUnit.Name = "txtHousingUnit";
+            txtHousingUnit.Size = new Size(286, 31);
+            txtHousingUnit.TabIndex = 36;
             // 
-            // button1
+            // btnAddPet
             // 
-            button1.Location = new Point(15, 355);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 39;
-            button1.Text = "Add Pet";
-            button1.UseVisualStyleBackColor = true;
+            btnAddPet.Location = new Point(23, 545);
+            btnAddPet.Margin = new Padding(4, 5, 4, 5);
+            btnAddPet.Name = "btnAddPet";
+            btnAddPet.Size = new Size(118, 35);
+            btnAddPet.TabIndex = 39;
+            btnAddPet.Text = "Add Pet";
+            btnAddPet.UseVisualStyleBackColor = true;
+            btnAddPet.Click += btnAddPet_Click;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(340, 355);
+            btnDelete.Location = new Point(535, 545);
+            btnDelete.Margin = new Padding(4, 5, 4, 5);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(102, 23);
+            btnDelete.Size = new Size(161, 35);
             btnDelete.TabIndex = 41;
             btnDelete.Text = "Delete Pet";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // pnlController
             // 
             pnlController.BackColor = SystemColors.ControlLight;
+            pnlController.Controls.Add(btnAutoFillID);
             pnlController.Controls.Add(txtSpecies);
-            pnlController.Controls.Add(lblAnimalIdA);
+            pnlController.Controls.Add(lblAnimalID);
             pnlController.Controls.Add(btnDelete);
-            pnlController.Controls.Add(label2);
+            pnlController.Controls.Add(lblPetName);
             pnlController.Controls.Add(lblSpecies);
-            pnlController.Controls.Add(button1);
+            pnlController.Controls.Add(btnAddPet);
             pnlController.Controls.Add(lblRecoveryScore);
             pnlController.Controls.Add(lblStatus);
-            pnlController.Controls.Add(textBox2);
-            pnlController.Controls.Add(label6);
-            pnlController.Controls.Add(textBox1);
-            pnlController.Controls.Add(lblAgeA);
-            pnlController.Controls.Add(cmbRecoveryScore);
+            pnlController.Controls.Add(txtHousingUnit);
+            pnlController.Controls.Add(lblHousingUnit);
+            pnlController.Controls.Add(txtStatus);
+            pnlController.Controls.Add(lblAge);
+            pnlController.Controls.Add(txtRecoveryScore);
             pnlController.Controls.Add(txtPetID);
-            pnlController.Controls.Add(btnCancelA);
+            pnlController.Controls.Add(btnCancel);
             pnlController.Controls.Add(txtAge);
             pnlController.Controls.Add(btnSave);
             pnlController.Controls.Add(txtPetName);
-            pnlController.Location = new Point(12, 12);
+            pnlController.Location = new Point(19, 18);
+            pnlController.Margin = new Padding(4, 5, 4, 5);
             pnlController.Name = "pnlController";
-            pnlController.Size = new Size(451, 392);
+            pnlController.Size = new Size(708, 600);
             pnlController.TabIndex = 44;
+            // 
+            // btnAutoFillID
+            // 
+            btnAutoFillID.Location = new Point(535, 17);
+            btnAutoFillID.Margin = new Padding(4, 5, 4, 5);
+            btnAutoFillID.Name = "btnAutoFillID";
+            btnAutoFillID.Size = new Size(148, 35);
+            btnAutoFillID.TabIndex = 42;
+            btnAutoFillID.Text = "Auto Fill ID";
+            btnAutoFillID.UseVisualStyleBackColor = true;
+            btnAutoFillID.Click += btnAutoFillID_Click;
+            // 
+            // btnExit
+            // 
+            btnExit.Font = new Font("Cambria", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExit.Location = new Point(418, 369);
+            btnExit.Margin = new Padding(4, 5, 4, 5);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(278, 54);
+            btnExit.TabIndex = 27;
+            btnExit.Text = "Exit Application";
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
             // 
             // DashBoard
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(11F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1370, 749);
+            ClientSize = new Size(2153, 1211);
             Controls.Add(pnlController);
             Controls.Add(dgvPet);
-            Controls.Add(btnGenerate);
+            Controls.Add(btnGenerateSummary);
             Controls.Add(pnlSearch);
-            Controls.Add(pictureBox1);
-            Margin = new Padding(2);
+            Controls.Add(pbxShelter);
+            Font = new Font("Cambria", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "DashBoard";
             Text = "DashBoard";
             Load += DashBoard_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbxShelter).EndInit();
             pnlSearch.ResumeLayout(false);
             pnlSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPet).EndInit();
@@ -429,42 +573,52 @@
         }
 
         #endregion
-        private PictureBox pictureBox1;
+        private PictureBox pbxShelter;
         private Panel pnlSearch;
-        private ComboBox cmbRecoveryScoreV;
-        private Button btnSearchV;
+        private ComboBox cmbRecoveryScoreSearch;
+        private Button btnSearchID;
         private TextBox txtSearch;
-        private DateTimePicker dtpToDateV;
-        private DateTimePicker dtpFromDate;
-        private Label lblToDateV;
-        private Label label4;
-        private Label lblRecoveryScoreV;
-        private Label label1;
+        private Label lblSearchRecoveryScore;
+        private Label lblAgeSearch;
         private TextBox txtAgeV;
-        private Button btnResetV;
-        private Button btnApplyV;
-        private Label label3;
-        private Button btnGenerate;
+        private Button btnResetSearch;
+        private Button btnApplySearch;
+        private Label lblSearchHeading;
+        private Button btnGenerateSummary;
         private Label lblout;
         private DataGridView dgvPet;
-        private Label lblAnimalIdA;
-        private Label label2;
+        private Label lblAnimalID;
+        private Label lblPetName;
         private Label lblSpecies;
         private Label lblRecoveryScore;
         private Label lblStatus;
-        private Label label6;
-        private Label lblAgeA;
+        private Label lblHousingUnit;
+        private Label lblAge;
         private TextBox txtPetID;
         private TextBox txtAge;
         private TextBox txtSpecies;
         private TextBox txtPetName;
         private Button btnSave;
-        private Button btnCancelA;
-        private ComboBox cmbRecoveryScore;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Button button1;
+        private Button btnCancel;
+        private TextBox txtRecoveryScore;
+        private TextBox txtStatus;
+        private TextBox txtHousingUnit;
+        private Button btnAddPet;
         private Button btnDelete;
         private Panel pnlController;
+        private Button btnAutoFillID;
+        private Label lblIDSearch;
+        private Label lblNameSearch;
+        private Label lblSpeciesSearch;
+        private Button btnSearchName;
+        private Button btnSearchSpecies;
+        private Button btnSearchAge;
+        private Button btnSearchRecovery;
+        private ComboBox cmbSpeciesSearch;
+        private TextBox txtSearchID;
+        private TextBox txtSearchName;
+        private TextBox txtSearchAge;
+        private Label label1;
+        private Button btnExit;
     }
 }

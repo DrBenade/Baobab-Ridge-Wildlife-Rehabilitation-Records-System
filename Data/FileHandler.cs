@@ -13,25 +13,15 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
     
     public class FileHandler
     {
-        //        // The file is stored in the same folder as the running .exe
-        //        private readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "animals.txt");
-        //        public int SkippedLines { get; set; }
 
-        //        // Loads all valid animals from the text file. Skips malformed lines and tracks the skipped count.
-
-        //        // <param name="skippedLines">Outputs the number of lines that failed validation during load.
-        //        // Returns a list of valid Animal objects.
-        // "skippedLines">Outputs the number of lines that failed validation during load.
-        // Returns a list of valid Animal objects.
+        // Loads all valid animals from the text file. Skips malformed lines and tracks the skipped count.
 
         private static readonly string FilePath =
                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "animals.txt");
-       // private  Animal Animal { get; set; }
 
-        /// <summary>Loads all valid animals; counts malformed lines in skippedLines.</summary>
-        public  List<Animal> LoadAnimals(out int skippedLines)
+
+        public List<Animal> LoadAnimals(out int skippedLines)
         {
-            Animal animal = new Animal();
             var animals = new List<Animal>();
             skippedLines = 0;
 
@@ -53,24 +43,21 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
                         continue;
                     }
 
-
-                    animals.Add(new Animal
+                    // Create the animal object using only the core data
+                    Animal newAnimal = new Animal
                     {
                         AnimalId = p[0].Trim(),
                         Name = p[1].Trim(),
                         Species = p[2].Trim(),
                         Age = age,
-                        RecoveryScore = score,
-                        Status = p[5].Trim(),
-                        HousingUnit = p[6].Trim()
-                    });
+                        RecoveryScore = score
+                    };
 
-                    // Recalculate status and housing to ensure absolute data integrity matching the score
-                    
-                    animal.CalculateStatusAndHousing();
+                    // Recalculate status and housing dynamically to ensure absolute data integrity matching the score
+                    newAnimal.CalculateStatusAndHousing();
+
+                    animals.Add(newAnimal);
                 }
-   
-
             }
             catch (UnauthorizedAccessException ex)
             {
@@ -97,7 +84,20 @@ namespace Baobab_Ridge_Wildlife_Rehabilitation_Records_System.Data
         {
             try
             {
-                File.AppendAllText(FilePath, animal.ToFileString() + Environment.NewLine);
+                string appendText = animal.ToFileString() + Environment.NewLine;
+
+                // Programmatically fixxed the "string fusion" issue
+                // If the file exists, has data, and doesn't end with a newline, prepend one.
+                if (File.Exists(FilePath))
+                {
+                    string currentContent = File.ReadAllText(FilePath);
+                    if (currentContent.Length > 0 && !currentContent.EndsWith("\n"))
+                    {
+                        appendText = Environment.NewLine + appendText;
+                    }
+                }
+
+                File.AppendAllText(FilePath, appendText);
                 return true;
             }
             catch (UnauthorizedAccessException ex)
