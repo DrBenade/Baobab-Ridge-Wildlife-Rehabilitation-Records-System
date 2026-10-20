@@ -12,6 +12,19 @@
 3. Build the solution (`Ctrl + Shift + B`). The project is configured to automatically copy the starter `animals.txt` file to the output directory beside the `.exe` file.
 4. Run the application (`F5` or "Start").
 
+
+## Important Troubleshooting Notes
+
+If you are downloading this project as a ZIP file from GitHub or BCConnect, please follow these steps before opening the solution to avoid standard Windows security and file path errors:
+
+1. **Unblock the ZIP File (Fixes .resx Security Errors):** 
+   Before extracting, right-click the downloaded `.zip` file and select **Properties**. Check the **Unblock** box at the bottom of the General tab, then click **Apply** and **OK**. This prevents MSBuild from blocking the form designer files.
+2. **Extract to a Short Directory Path (Fixes MSBuild Path Errors):** 
+   Extract the project folder to a top-level directory (for example, `C:\Projects\`) rather than deep inside nested folders (like your Desktop or Downloads folder). This prevents the build from failing due to the Windows 260-character file path limit.
+3. **Clean and Rebuild:** 
+   Once opened in Visual Studio, go to the top menu and select **Build > Clean Solution**, followed by **Build > Rebuild Solution** to ensure all linked files compile correctly.
+
+   
 ## Features
 * **Feature 1 - Add a new animal:** Validates user input (ID format, string lengths, numeric constraints), calculates the animal's Status and Housing Unit based on the Recovery Score, and securely appends the new record to the data file.
 * **Feature 2 - View all animals:** Automatically loads valid records from `animals.txt` on startup and displays them in a read-only DataGridView. Skips malformed lines safely without crashing.
